@@ -21,7 +21,6 @@ def whoGoesFirst():
     global first, second, player1Char, player2Char
     while finished != True:
         x = random.randint(1,2)
-        print(x)
         goingFirst = input('Player 1, choose a number 1 or 2: ')
 
         if x == int(goingFirst):
@@ -102,8 +101,11 @@ def startGame(board):
    while boardFilled(board) == False and someoneWon == False:
        displayBoard(board)
        theChoice = input(f'%s pick a spot from 0 - 8  : ' %(first))
-       theChoice = int(theChoice)
+       if isinstance(theChoice, int):
+           theChoice = int(theChoice)
+
        if (0 <= theChoice < 9) and spotEmpty(board, theChoice) == True:
+           
            if first == 'Player 1':
                board[theChoice] = player1Char
                first = 'Player 2'
